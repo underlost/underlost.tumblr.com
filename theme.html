@@ -1,237 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	
-	<!-- 	
-		Originally based on PROLOGUE TUMBLR THEME http://prologuetheme.tumblr.com
-		by HAYDEN HUNTER http://log.acryliccowboy.com
-	-->
-	
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<meta name="viewport" content="width=730" />
-	
-	<title>{Title}{/block:PostTitle}{block:SearchPage} &mdash; {lang:Search results for SearchQuery}{/block:SearchPage}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
-	{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
-	<link rel="shortcut icon" href="{Favicon}" />
-	<link rel="alternate" type="application/rss+xml" href="{RSS}" />
-	
-	<!-- Javascript -->
-	<script type="text/javascript" src="http://use.typekit.com/oce2qbz.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://media.underlost.net/tumblr/blog/js/global.js"></script>
-	
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" media="screen" href="http://media.underlost.net/tumblr/blog/css/reset.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="http://media.underlost.net/tumblr/blog/css/screen.css" />
-	
-	<!--[if IE]>
-		<link rel="stylesheet" type="text/css" media="screen" href="http://media.underlost.net/tumblr/blog/css/ie.css" />
+  <head>
+    <meta charset="utf-8">
+    <title>{Title} {block:PostTitle} {PostTitle} {/block:PostTitle}</title>
+    <meta name="description" content="Strongly chaotic neutral">
+    <meta name="author" content="Tyler Rilling">
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-</head>
-<body>
+	<!-- Le styles -->
+	<link href="http://media.underlost.net/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://media.underlost.net/tumblr/blog/css/style.css" rel="stylesheet">
 	
-	<div id="wrapper">
-		<h1 id="title"><a href="/">{Title}</a></h1>				
-			<div id="description" class="post">
-				<div class="content">
-					{Description}    					   
-				</div>
-			</div>
+	<!-- Le javascript -->
+	<script type="text/javascript" src="http://use.typekit.com/kng5khq.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="apple-touch-icon" href="{PortraitURL-128}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{PortraitURL-72}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{PortraitURL-114}">
+	
+	<meta name="text:Google Analytics ID" content="" />
+	<meta name="text:Disqus Shortname" content="" />
+</head>    
+
+	<body>
+	
+	<header>
+		<h1><a href="/">{Title}</a></h1>
+		<p id="description">{block:Description}{Description}{/block:Description}</p>	
+   	</header>
+
+	<div id="content">	
+    {block:Posts}
+    
+    {block:Date}
+    	<div class="date">
+    	{block:NewDayDate}
+    		<div class="container">
+    		<h3 class="posted-on">{DayOfWeek}, {DayOfMonthWithZero} {Month} {Year}</h3>
+    		</div>
+    	{/block:NewDayDate}
+    	</div>
+    {/block:Date}
+	
+	<div class="container">
 				
-				<!-- Search -->
-				{block:SearchPage}
-					<div id="searchResults" class="post">
-					    {block:SearchResults}
-					        {lang:SearchResultCount results for SearchQuery}
-					    {/block:SearchResults}
-					    {block:NoSearchResults}
-					        {lang:No search results for SearchQuery}
-					    {/block:NoSearchResults}
+				{block:Quote}
+				
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}{/block:Date}
 					</div>
-				{/block:SearchPage}
-				<!--/ Search -->
 				
-				<!-- Tag Page -->
-				{block:TagPage}
-					<div id="tagPage" class="post">{lang:Posts tagged Tag}</div>
-				{/block:TagPage}
-				<!--/ Tag Page -->
+					<div class="quote post">
+				
+					    <h2>"{Quote}"</h2>
+					
+						{block:Source}
+                            <p>{Source}</p>
+                        {/block:Source}
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+				
+					</div>
+				
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+					
+				{/block:Quote}
+                
+				
+				{block:Photo}
+					
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+					
+					<div class="photo post">
+						
+						
+						
+						{LinkOpenTag}
+					    	<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+						{LinkCloseTag}
+					
+						{block:Caption}
+                            <p>{Caption}</p>
+                        {/block:Caption}
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+						
+					</div>
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+                
+                {/block:Photo}
+
+
+ 				{block:Video}
+				
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+				
+					<div class="video post">
+				
+						{Video-500}
+						
+						{block:Caption}
+                            <p>{Caption}</p>
+                        {/block:Caption}
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+                
+                {/block:Video}   
+                
+                
+				{block:Link}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+					
+					<div class="link post">
+
+					    <h2><a href="{URL}" {Target}>{Name}</a></h2>
+						
+						{block:Description}
+							<p>{Description}</p>
+						{/block:Description}
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+    
+					</div>
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+						
+				{/block:Link}
+                
+
+				{block:Chat}
+				
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+                
+					<div class="conversation post">
+						
+						{block:Title}
+                            <h2>{Title}</h2>
+                        {/block:Title}
+
+						<ul class="unstyled">
+							{block:Lines}
+								<li class="member{UserNumber}">
+									{block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}
+									{Line}
+								</li>
+							{/block:Lines}
+						</ul>
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+										
+					</div>
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+						
+				{/block:Chat}
+                
+                    
+                {block:Text}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+					
+                    <div class="text post">
+	
+                        {block:Title}
+                            <h2>{Title}</h2>
+                        {/block:Title}
+
+                        {Body}
+						
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+                    </div>
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+                {/block:Text}
+
+
+				{block:Audio}
+					
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{block:IfDisqusShortname}{/block:Date}
+					</div>
+					
+					<div class="post audio">
+					
+						{AudioPlayerGrey}
+						
+						<div class="audio_details">{block:Artist}<b>{Artist}</b>{/block:Artist} &ndash; {block:TrackName}{TrackName}{/block:TrackName} <span class="playcount">({PlayCountWithLabel})</span></div>
+						<div class="audio_caption">{block:Caption}{Caption}{/block:Caption}</div>
+					
+						{block:ExternalAudio}
+							<p><a href="{ExternalAudioURL}">{lang:Download}</a></p>
+						{/block:ExternalAudio}			
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+						
+					</div>
+					
+					{block:IfDisqusShortname}
+                    {block:Permalink}
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                    <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                    {/block:Permalink}
+                    {/block:IfDisqusShortname}
+					
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+				
+				{/block:Audio}
+                   
+			</div>
+			{/block:Posts}
+				
+
+
+		<footer>
+			{block:Pagination}
+
+				<div id="navigation">
+   
+					{block:NextPage}
+		                <a href="{NextPage}" id="nav-next" style="text-transform:lowercase;">&larr; {lang:Older}</a>
+		            {/block:NextPage}
+					<span class="page_number"> &nbsp; {CurrentPage}/{TotalPages} &nbsp;</span>
+					{block:PreviousPage}
+	                	<a href="{PreviousPage}" id="nav-prev" style="text-transform:lowercase;">{lang:Newer} &rarr;</a>
+		            {/block:PreviousPage}
+
+				</div>
+
+			 {/block:Pagination}
+			
+			{block:PermalinkPagination}
 				
 				<div id="navigation">
-					<span>By Tyler Rilling</span>
-					<ul>
-						<li><a href="/archive">Archive</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li><a href="#">Projects</a></li>
-						<li><a href="/rss">RSS Feed</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-				
-				<div id="wrapper-inner">		
-				
-				{block:Posts}
-				
-				<!--/ {block:Date}
-					{block:NewDayDate}
-						<h3 class="posted-on">{DayOfWeek}, {DayOfMonthWithZero} {Month} {Year}</h3>
-					{/block:NewDayDate}
-				{/block:Date} -->
-				
-					{block:Text}
-					<div class="post text">
-						<a href="{Permalink}" class="icon"></a>
-						{block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-						<div class="content">
-							{Body}
-						</div>
-					{/block:Text}
 					
-					
-					{block:Photo}
-					<div class="post photo">
-						<a href="{Permalink}" class="icon"></a>
-						<div class="media{block:HighRes} zoom{/block:HighRes}">
-							{LinkOpenTag}
-								<img src="{PhotoURL-500}" alt="{PhotoAlt}" />
-								<span {block:HighRes}title="{PhotoURL-HighRes}" {/block:HighRes}class="destination"></span>
-							{LinkCloseTag}							
-						</div>
-						{block:Caption}<div class="content">
-							{Caption}
-						</div>{/block:Caption}
-					{/block:Photo}
-				
-				
-					{block:Quote}
-					<div class="post quote">
-						<a href="{Permalink}" class="icon"></a>
-						<div class="quotation {Length}">
-							<span class="source"></span>
-							<blockquote>
-								<div class="quoteWrapper">
-									<span class="left">&ldquo;</span>
-									{Quote}
-									<span class="right">&rdquo;</span>
-								</div>
-							</blockquote>
-						</div>
-						{block:Source}<div class="content">
-							<p>{Source}</p>
-						</div>{/block:Source}
-					{/block:Quote}
-					
-					
-					{block:Link}
-					<div class="post link">
-						<a href="{Permalink}" class="icon"></a>
-						<h2 class="title"><a href="{URL}" {Target}><span>{Name}</span>&nbsp;<span class="arrow"></span></a></h2>
-						{block:Description}<div class="content">
-							{Description}
-						</div>{/block:Description}
-					{/block:Link}
-					
-					
-					{block:Chat}
-					<div class="post chat">
-						<a href="{Permalink}" class="icon"></a>
-						{block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-						<div class="content">							
-														
-							<ul class="chat">
-							{block:Lines}
-							<li class="{Alt} user_{UserNumber}">
-							{block:Label}
-							<span class="label">{Label}</span>
-							{/block:Label}
-							{Line}
-							</li>
-							{/block:Lines}
-							</ul>
-							
-							<div class="clear"></div>
-						</div>
-					{/block:Chat}
-					
-					
-					{block:Audio}
-					<div class="post audio">
-						<a href="{Permalink}" class="icon"></a>
-						<div class="player">{AudioPlayerBlack}</div>
-
-						<div class="metaAudio">{block:ExternalAudio}<a class="download" href="{ExternalAudioURL}"><span>{lang:Download}</span></a> {/block:ExternalAudio}<span class="plays">{PlayCountWithLabel}</span></div>
-
-						{block:Caption}<div class="content">
-							{Caption}
-						</div>{/block:Caption}
-					{/block:Audio}
-					
-					
-					
-					{block:Video}
-					<div class="post video">
-						<a href="{Permalink}" class="icon"></a>	
-						<div class="embed">{Video-500}</div>
-						{block:Caption}<div class="content">
-							{Caption}
-						</div>{/block:Caption}
-					{/block:Video}
-					
-					<div class="meta">
-						<ul class="metaList">
-							<li class="posted"><a href="{permalink}"><span>{block:Reblog}
-                                {lang:Reblogged TimeAgo} {block:RebloggedFromReblog}({lang:Originally from ReblogRootName}){/block:RebloggedFromReblog}
-                            {/block:Reblog}
-                            
-                            {block:NotReblog}
-                                {lang:Posted TimeAgo}
-                            {/block:NotReblog}</span></a></li>
-							{block:GroupMembers}<li class="author">{lang:By PostAuthorName 2}</li>{/block:GroupMembers} 
-							{block:NoteCount}<li class="notes"><a href="{permalink}#notes"><span>{NoteCountWithLabel}</span></a></li>{/block:NoteCount}
-							{block:HasTags}<li class="tagged">{lang:Tagged with}: {block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</li>{/block:HasTags}
-							{block:Date}{block:IfDisqusShortname}<li class="comments"><a href="{Permalink}#disqus_thread"><span class="dsq-comment-count">{lang:Comments}</span></a></li>{/block:IfDisqusShortname}{/block:Date}							
-						</ul>
-						<div class="clear"></div>
-					</div>
-					{block:PostNotes}<div id="notes">{PostNotes}</div>{/block:PostNotes}
-						
-				</div>
-						
-				{/block:Posts}						
-				
-				{block:Pagination}
-				<div id="pageNav">
-					<span id="pageCount">{lang:Page CurrentPage of TotalPages}</span>{block:NextPage} <a href="{NextPage}">&larr; <span>{lang:Older}</span></a>{/block:NextPage}{block:PreviousPage} <a href="{PreviousPage}"><span>{lang:Newer}</span> &rarr;</a>{/block:PreviousPage}
-					<div class="clear"></div>
-				</div>
-				{/block:Pagination}
-				
-				<div class="clear"></div>
-				
-				</div>
-							
-				<div id="footer">
-					
-					<div id="search">
-						<form action="/search" method="get">
-						<input class="search-input" type="text" name="q" value=""/>
-						<input type="submit" value="Search"/>
-						</form>
-					</div>
-					
-					<div class="clear"></div>	
-					
-					<div id="copyright">Copyright © 2007–2011 Tyler Rilling</div>
-								
-				</div>				
-				
-
-	</div>
+					{block:PreviousPost}
+	                	<a href="{PreviousPost}" id="nav-prev" style="text-transform:lowercase;">&larr; {lang:Older}</a>
+		            {/block:PreviousPost}
+					<span class="page_number"> &nbsp; {CurrentPage}/{TotalPages} &nbsp;</span>
+					{block:NextPost}
+		                <a href="{NextPost}" id="nav-next" style="text-transform:lowercase;">{lang:Newer} &rarr;</a>
+		            {/block:NextPost}
 	
-</body>
+				</div>
+			
+			{/block:PermalinkPagination}
+			
+				<form action="/search" method="get" id="searchform">
+					<p><input type="search" name="q" value="" results="5" /></p>
+				</form>
+			
+		</footer>
+     
+        </div>
+
+	{block:IfGoogleAnalyticsID}
+		<script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("{text:Google Analytics ID}");pageTracker._trackPageview()}catch(err){}</script>
+	{block:IfGoogleAnalyticsID}
+
+    </body>
 </html>
